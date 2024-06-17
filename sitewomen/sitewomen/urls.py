@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
     path('about/', views.about, name='about'),
-    path('women/', include('women.urls')),
+    path('', include('women.urls')),
 ]
 
 handler404 = views.page_not_found
