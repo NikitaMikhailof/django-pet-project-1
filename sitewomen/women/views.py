@@ -19,14 +19,17 @@ data_db = [
 
 def index(request):
     posts = Women.published.all()
+    posts = Women.published.all()
     data = {
             'title': 'Главная страница сайта',
             'menu': menu,
+            'posts':posts,
             'posts':posts,
             'cat_selected':0,
             
     }
     return render(request, 'women/index.html', context=data)
+
 
 
 def about(request):
@@ -44,12 +47,25 @@ def show_post(request, post_slug):
     return render(request, 'women/post.html', data)
 
 
+def show_post(request, post_slug):
+    post = get_object_or_404(Women, slug=post_slug)
+    data = {
+        'title': post.title,
+        'menu': menu,
+        'post': post,
+        'cat_selected': 1, 
+    }
+    return render(request, 'women/post.html', data)
+
+
 def addpage(request):
     return HttpResponse('Добавление статьи')
 
 
+
 def contact(request):
     return HttpResponse('Добавление контактa')
+
 
 
 def login(request):
@@ -66,6 +82,7 @@ def show_category(request, cat_slug):
             'cat_selected': category.pk,      
     }
     return render(request, 'women/index.html', context=data)
+
 
 
 def page_not_found(request, exception):
