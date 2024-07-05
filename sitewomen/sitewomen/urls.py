@@ -23,6 +23,7 @@ urlpatterns = [
     path('', views.index, name='home'),
     path('about/', views.about, name='about'),
     path('', include('women.urls')),
+    path("__debug__/", include("debug_toolbar.urls")),
 ]
 
 handler404 = views.page_not_found
